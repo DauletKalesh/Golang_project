@@ -10,6 +10,7 @@ import (
 
 func RegisterUser(context *gin.Context) {
 	var user models.User
+	var profile models.Profile
 	if err := context.ShouldBindJSON(&user); err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		context.Abort()
@@ -26,5 +27,6 @@ func RegisterUser(context *gin.Context) {
 		context.Abort()
 		return
 	}
+	database.Instance.Create(&profile)
 	context.JSON(http.StatusCreated, gin.H{"userId": user.ID, "email": user.Email, "username": user.Username})
 }
