@@ -2,7 +2,6 @@ package models
 
 import (
 	"golang.org/x/crypto/bcrypt"
-	"gorm.io/gorm"
 )
 
 func (user *User) HashPassword(password string) error {
@@ -22,9 +21,20 @@ func (user *User) CheckPassword(providedPassword string) error {
 }
 
 type User struct {
-	gorm.Model
-	Name     string `json:"name"`
-	Username string `json:"username" gorm:"unique"`
-	Email    string `json:"email" gorm:"unique"`
-	Password string `json:"password"`
+	ID        uint   `gorm:"primaryKey"`
+	Username  string `json:"username" gorm:"unique"`
+	Email     string `json:"email" gorm:"unique"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Password  string `json:"password"`
+	Profile   Profile
+}
+
+type Profile struct {
+	ID      uint
+	UserID  uint
+	avatar  string
+	bio     string
+	gender  string
+	country string
 }
