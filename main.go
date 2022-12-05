@@ -1,16 +1,24 @@
 package main
 
 import (
+	"fmt"
 	"jwt-authentication-golang/controllers"
 	"jwt-authentication-golang/database"
 	"jwt-authentication-golang/middlewares"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	// Initialize Database
-	database.Connect("root:password@tcp(localhost:3306)/jwt_demo?parseTime=true") //root:dDGHHoRvoDIZaQTgr4my@containers-us-west-85.railway.app:7865/railway
+	USER := os.Getenv("DB_USER")
+	PASS := os.Getenv("DB_PASSWORD")
+	HOST := os.Getenv("DB_HOST")
+	DBNAME := os.Getenv("DB_NAME")
+	URL := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local", USER, PASS, HOST, DBNAME)
+	fmt.Println(URL)
+	database.Connect(URL)
 	database.Migrate()
 	// Initialize Router
 	router := initRouter()
