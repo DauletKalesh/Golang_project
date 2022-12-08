@@ -33,6 +33,15 @@ func initRouter() *gin.Engine {
 		api.POST("/movie/add", controllers.CreateMovie)
 		api.DELETE("/movie/delete/:movieId", controllers.DeleteMovie)
 		api.PUT("/movie/update/:movieId", controllers.UpdateMovie)
+
+		api.POST("/celebrity/add", controllers.CreateCelebrity)
+		api.DELETE("/celebrity/delete/:celebrityId", controllers.DeleteCelebrity)
+
+		api.PUT("/celebrity/update/:celebrityId", controllers.UpdateCelebrity)
+
+		api.GET("/celebrity/get/:celebrityId", controllers.GetCelebrity)
+		api.GET("/celebrities", controllers.GetCelebrites)
+
 		api.GET("/movie/get/:movieId", controllers.GetMovie)
 		// crud_movie := api.Group(("/movie")).Use()
 		// {
