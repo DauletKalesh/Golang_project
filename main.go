@@ -24,6 +24,7 @@ func main() {
 	router := initRouter()
 	router.Run(":8080")
 }
+//asem push
 func initRouter() *gin.Engine {
 	router := gin.Default()
 	api := router.Group("/api")
