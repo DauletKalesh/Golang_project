@@ -31,10 +31,11 @@ type User struct {
 }
 
 type Profile struct {
-	ID      uint
-	UserID  uint
-	avatar  string
-	bio     string
-	gender  string
-	country string
+	ID       uint
+	UserID   uint
+	avatar   string
+	bio      string
+	gender   string
+	country  string
+	Bookmark []Bookmark
 }
