@@ -24,15 +24,15 @@ type Genre struct {
 
 type Bookmark struct {
 	ID          uint `gorm:"primaryKey"`
-	UserID      uint
-	MovieID     uint
-	is_favorite bool
-	is_watched  bool
+	UserID      uint `json:"userId"`
+	MovieID     uint `json:"movieId"`
+	Is_favorite bool `json:"is_favorite"`
+	Is_watched  bool `json:"is_watched"`
 }
 
 type Comment struct {
-	ID      uint `gorm:"primaryKey"`
-	UserID  uint
-	MovieID uint
-	text    string
+	ID      uint   `gorm:"primaryKey"`
+	UserID  uint   `json:"userId"`
+	MovieID uint   `json:"movieId"`
+	Text    string `json:"text;"`
 }

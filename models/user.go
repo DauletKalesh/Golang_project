@@ -38,5 +38,13 @@ type Profile struct {
 	bio      string
 	gender   string
 	country  string
-	Bookmark []Bookmark
+	Bookmark []Bookmark `gorm:"-"`
+}
+
+type Bookmark struct {
+	ID          uint `gorm:"primaryKey"`
+	UserID      uint `json:"userId"`
+	MovieID     uint `json:"movieId"`
+	Is_favorite bool `json:"is_favorite"`
+	Is_watched  bool `json:"is_watched"`
 }
