@@ -22,14 +22,6 @@ type Genre struct {
 	Movie []Movie `json:"genre" gorm:"many2many:movie_genres;"`
 }
 
-type Bookmark struct {
-	ID          uint `gorm:"primaryKey"`
-	UserID      uint `json:"userId"`
-	MovieID     uint `json:"movieId"`
-	Is_favorite bool `json:"is_favorite"`
-	Is_watched  bool `json:"is_watched"`
-}
-
 type Comment struct {
 	ID      uint   `gorm:"primaryKey"`
 	UserID  uint   `json:"userId"`
