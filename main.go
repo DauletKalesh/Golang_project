@@ -45,6 +45,11 @@ func initRouter() *gin.Engine {
 
 		api.PUT("/celebrity/update/:celebrityId", controllers.UpdateCelebrity)
 
+		api.POST("/comment/add", controllers.CreateComment)
+		api.DELETE("/comment/delete/:commentId", controllers.DeleteComment)
+		api.PUT("/comment/update/:commentId", controllers.UpdateComment)
+		api.GET("/getCommentsOfMovie/:movieId", controllers.GetUserCommentsByMovie)
+
 		api.GET("/celebrity/get/:celebrityId", controllers.GetCelebrity)
 		api.GET("/celebrities", controllers.GetCelebrites)
 
