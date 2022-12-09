@@ -23,7 +23,7 @@ func CreateGenre(context *gin.Context) {
 		context.Abort()
 		return
 	}
-	context.JSON(http.StatusCreated, gin.H{"genreId": genre.ID, "Name": genre.Name, "Movies": genre.Movies})
+	context.JSON(http.StatusCreated, gin.H{"genreId": genre.ID, "Name": genre.Name, "Movies": genre.Movie})
 }
 
 func DeleteGenre(context *gin.Context) {
