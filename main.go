@@ -15,7 +15,6 @@ import (
 )
 
 func main() {
-	// Initialize Database
 	USER := os.Getenv("DB_USER")
 	PASS := os.Getenv("DB_PASSWORD")
 	HOST := os.Getenv("DB_HOST")
@@ -47,6 +46,13 @@ func initRouter() *gin.Engine {
 
 		api.POST("/comment/add", controllers.CreateComment)
 		api.DELETE("/comment/delete/:commentId", controllers.DeleteComment)
+
+		api.POST("/genre/add", controllers.CreateGenre)
+		api.DELETE("/genre/delete/:genreId", controllers.DeleteGenre)
+		api.PUT("/genre/update/:genreId", controllers.UpdateGenre)
+		api.GET("/genre/get/:genreId", controllers.GetGenre)
+		api.GET("/genres", controllers.GetGenres)
+
 		api.PUT("/comment/update/:commentId", controllers.UpdateComment)
 		api.GET("/getCommentsOfMovie/:movieId", controllers.GetUserCommentsByMovie)
 
