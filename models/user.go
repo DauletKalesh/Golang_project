@@ -28,6 +28,7 @@ type User struct {
 	LastName  string `json:"last_name"`
 	Password  string `json:"password"`
 	Profile   Profile
+	Comment   []Comment
 }
 
 type Profile struct {

@@ -11,6 +11,7 @@ type Movie struct {
 	Rating     float32 `json:"rating"`
 	ViewAmount int     `json:"view_amount"`
 	Bookmark   []Bookmark
+	Comment    []Comment
 	// ReleaseDate date    `json:"release_date"`
 	//Director *Director `json:"director"`
 }
@@ -27,4 +28,11 @@ type Bookmark struct {
 	MovieID     uint
 	is_favorite bool
 	is_watched  bool
+}
+
+type Comment struct {
+	ID      uint `gorm:"primaryKey"`
+	UserID  uint
+	MovieID uint
+	text    string
 }
