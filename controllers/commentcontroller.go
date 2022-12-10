@@ -100,3 +100,19 @@ func GetUserCommentsByMovie(context *gin.Context) {
 	context.Abort()
 	return
 }
+func GetUserCommentsByUser(context *gin.Context) {
+	var comment []models.Comment
+
+	id := context.Param("userId")
+	records := database.Instance.Where("userId = ?", id).First(&comment)
+
+	//records := database.Instance.Find(&comments)
+	if records.Error != nil {
+		context.JSON(404, gin.H{"error": "for this User Comment not found"})
+		context.Abort()
+		return
+	}
+	context.JSON(200, &comment)
+	context.Abort()
+	return
+}
