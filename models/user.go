@@ -29,16 +29,16 @@ type User struct {
 	Password  string `json:"password"`
 	Profile   Profile
 	Comment   []Comment
+	Bookmark  []Bookmark
 }
 
 type Profile struct {
-	ID       uint
-	UserID   uint
-	avatar   string
-	bio      string
-	gender   string
-	country  string
-	Bookmark []Bookmark `gorm:"-"`
+	ID      uint   `gorm:"primaryKey"`
+	UserID  uint   `json:"userId"`
+	Avatar  string `json:"avatar"`
+	Bio     string `json:"bio"`
+	Gender  string `json:"gender"`
+	Country string `json:"country"`
 }
 
 type Bookmark struct {

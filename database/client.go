@@ -28,6 +28,6 @@ func Migrate() {
 	Instance.AutoMigrate(&models.Celebrity{})
 	Instance.AutoMigrate(&models.Movie{})
 
-	Instance.AutoMigrate(&models.Movie{})
+	// Instance.AutoMigrate(&models.Movie{})
 	log.Println("Database Migration Completed!")
 }

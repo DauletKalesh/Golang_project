@@ -10,7 +10,7 @@ import (
 
 func RegisterUser(context *gin.Context) {
 	var user models.User
-	var profile models.Profile
+	// var profile models.Profile
 	if err := context.ShouldBindJSON(&user); err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		context.Abort()
@@ -27,6 +27,15 @@ func RegisterUser(context *gin.Context) {
 		context.Abort()
 		return
 	}
-	database.Instance.Create(&profile)
+	record.Save(&user)
+	profile := models.Profile{
+		UserID: user.ID,
+	}
+	if record := database.Instance.Create(&profile); record.Error != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error": record.Error.Error()})
+		context.Abort()
+		return
+	}
+	record.Save(&profile)
 	context.JSON(http.StatusCreated, gin.H{"userId": user.ID, "email": user.Email, "username": user.Username})
 }

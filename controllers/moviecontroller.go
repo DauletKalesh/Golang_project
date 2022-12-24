@@ -17,6 +17,8 @@ func CreateMovie(context *gin.Context) {
 		context.Abort()
 		return
 	}
+	log.Println(movie)
+	// movie.Actor =
 	record := database.Instance.Create(&movie)
 	if record.Error != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"error": record.Error.Error()})
@@ -84,12 +86,15 @@ func GetMovie(context *gin.Context) {
 func GetMovies(context *gin.Context) {
 
 	var movies []models.Movie
-	records := database.Instance.Find(&movies)
+	// var genres []models.Genre
+	// records := database.Instance.Find(&movies)
+	records := database.Instance.Preload("Genre").Preload("Actor").Find(&movies)
 	if records.Error != nil {
 		context.JSON(404, gin.H{"error": "Movie not found"})
 		context.Abort()
 		return
 	}
+	// records := database.Instance.Model(&movies).Association("Genres").Find(&genres)
 	context.JSON(200, &movies)
 	context.Abort()
 	return

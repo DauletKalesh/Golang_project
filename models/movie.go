@@ -26,5 +26,5 @@ type Comment struct {
 	ID      uint   `gorm:"primaryKey"`
 	UserID  uint   `json:"userId"`
 	MovieID uint   `json:"movieId"`
-	Text    string `json:"text;"`
+	Text    string `json:"text"`
 }

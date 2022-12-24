@@ -88,7 +88,7 @@ func GetUserCommentsByMovie(context *gin.Context) {
 	var comment []models.Comment
 
 	id := context.Param("movieId")
-	records := database.Instance.Where("movieId = ?", id).First(&comment)
+	records := database.Instance.Where("movie_id = ?", id).First(&comment)
 
 	//records := database.Instance.Find(&comments)
 	if records.Error != nil {
@@ -104,9 +104,9 @@ func GetUserCommentsByUser(context *gin.Context) {
 	var comment []models.Comment
 
 	id := context.Param("userId")
-	records := database.Instance.Where("userId = ?", id).First(&comment)
+	records := database.Instance.Where("user_id = ?", id).First(&comment)
 
-	//records := database.Instance.Find(&comments)
+	// records := database.Instance.Find(&comment)
 	if records.Error != nil {
 		context.JSON(404, gin.H{"error": "for this User Comment not found"})
 		context.Abort()
