@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 type Movie struct {
 	ID          uint        `gorm:"primaryKey"`
 	Name        string      `json:"name"`
@@ -7,12 +9,12 @@ type Movie struct {
 	Genre       []Genre     `json:"genre" gorm:"many2many:movie_genres;"`
 	Actor       []Celebrity `json:"actor" gorm:"many2many:movie_celebrities;"`
 
-	Country    int     `json:"country"`
-	Rating     float32 `json:"rating"`
-	ViewAmount int     `json:"view_amount"`
-	Bookmark   []Bookmark
-	Comment    []Comment
-	// ReleaseDate date    `json:"release_date"`
+	Country     int       `json:"country"`
+	Rating      float32   `json:"rating"`
+	ViewAmount  int       `json:"view_amount"`
+	ReleaseDate time.Time `json:"release_date"`
+	Bookmark    []Bookmark
+	Comment     []Comment
 	//Director *Director `json:"director"`
 }
 
