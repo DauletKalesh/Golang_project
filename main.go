@@ -35,17 +35,18 @@ func initRouter() *gin.Engine {
 	{
 		api.POST("/token", controllers.GenerateToken)
 		api.POST("/user/register", controllers.RegisterUser)
+
 		api.POST("/movie/add", controllers.CreateMovie)
 		api.DELETE("/movie/delete/:movieId", controllers.DeleteMovie)
 		api.PUT("/movie/update/:movieId", controllers.UpdateMovie)
 
 		api.POST("/celebrity/add", controllers.CreateCelebrity)
 		api.DELETE("/celebrity/delete/:celebrityId", controllers.DeleteCelebrity)
-
 		api.PUT("/celebrity/update/:celebrityId", controllers.UpdateCelebrity)
 
 		api.POST("/comment/add", controllers.CreateComment)
 		api.DELETE("/comment/delete/:commentId", controllers.DeleteComment)
+		api.PUT("/comment/update/:commentId", controllers.UpdateComment)
 
 		api.POST("/genre/add", controllers.CreateGenre)
 		api.DELETE("/genre/delete/:genreId", controllers.DeleteGenre)
@@ -53,7 +54,6 @@ func initRouter() *gin.Engine {
 		api.GET("/genre/get/:genreId", controllers.GetGenre)
 		api.GET("/genres", controllers.GetGenres)
 
-		api.PUT("/comment/update/:commentId", controllers.UpdateComment)
 		api.GET("/getCommentsOfMovie/:movieId", controllers.GetUserCommentsByMovie)
 		api.GET("/getCommentsOfUser/:userId", controllers.GetUserCommentsByUser)
 
