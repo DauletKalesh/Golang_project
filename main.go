@@ -10,6 +10,8 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/gin-contrib/cache"
+	"github.com/gin-contrib/cache/persistence"
 	"github.com/gin-gonic/gin"
 	"github.com/gofiber/fiber"
 )
@@ -52,7 +54,7 @@ func initRouter() *gin.Engine {
 		api.DELETE("/genre/delete/:genreId", controllers.DeleteGenre)
 		api.PUT("/genre/update/:genreId", controllers.UpdateGenre)
 		api.GET("/genre/get/:genreId", controllers.GetGenre)
-		api.GET("/genres", controllers.GetGenres)
+		api.GET("/genres", cache.CachePage(persistence.NewInMemoryStore(), 200, controllers.GetGenres))
 
 		api.GET("/getCommentsOfMovie/:movieId", controllers.GetUserCommentsByMovie)
 		api.GET("/getCommentsOfUser/:userId", controllers.GetUserCommentsByUser)
